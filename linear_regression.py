@@ -1,6 +1,6 @@
 from model import Model
 import numpy as np
-class linear_regression(Model):
+class Linear_Regression(Model):
     def __init__(self):
         self.X = None
         self.Y = None
