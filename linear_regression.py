@@ -5,7 +5,7 @@ class Linear_Regression(Model):
         self.X = None
         self.Y = None
         self.theta = None
-        self.alpha = 0.01
+        self.alpha = 0.025
         self.epochs = 100
 
     def hypothesis(self, X_i):
