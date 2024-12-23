@@ -10,6 +10,7 @@ class Linear_Regression(Model):
 
     def hypothesis(self, X_i):
         return np.dot(self.theta.T, X_i)
+
     def fit(self, X, Y):
         self.X = np.ones((X.shape[0]+1,X.shape[1]))
         self.X[1:1+np.shape(X)[0],:np.shape(X)[1]] = X

@@ -33,8 +33,12 @@ Y = np.array([
     14.890320457198703, 16.13411853254695, 17.102826177407727, 16.43615911718744, 17.07434004844718
 ])
 
+# fitting the data
 lr.fit(X.T,Y) # X is transposed
+
+# parameters
 print(lr.theta)
 
+# X, dot, hypothesis
 for i in range(20):
-    print(np.dot(lr.theta,lr.X[:,i]), Y[i])
+    print(lr.X[:,i], np.dot(lr.theta,lr.X[:,i]),lr.hypothesis(lr.X[:,i]), Y[i])
