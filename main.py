@@ -1,4 +1,4 @@
-from linear_regression import Linear_Regression
+from models.linear_regression import Linear_Regression
 import matplotlib.pyplot as plt
 import numpy as np
 

@@ -1,5 +1,5 @@
-from model import Model
-from utilities import functions, tree
+from models.utilities import tree, functions
+
 
 def decision_tree(features, X, Y):
     def decision_tree_rec(features, X,Y):
@@ -15,7 +15,7 @@ def decision_tree(features, X, Y):
             NO_x,NO_y, YES_x, YES_y = functions.splitData(features, X, Y)
             left = decision_tree_rec(new_features, NO_x, NO_y)
             right = decision_tree_rec(new_features, YES_x, YES_y)
-            return tree.Node(f,left, right)
+            return tree.Node(f, left, right)
 
     return decision_tree_rec(features, X, Y)
 
