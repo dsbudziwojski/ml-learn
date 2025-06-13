@@ -35,7 +35,7 @@ Y = np.array([
 ])
 
 # fitting the data
-lr.fit(X.T,Y) # X is transposed
+lr.fit(X, Y) # X is transposed
 
 # parameters
 print(lr.theta)
@@ -43,8 +43,8 @@ print(lr.theta)
 # X, dot, hypothesis
 h = []
 for i in range(20):
-    print(lr.X[:,i], np.dot(lr.theta,lr.X[:,i]),lr.hypothesis(lr.X[:,i]), Y[i])
-    h.append(lr.hypothesis(lr.X[:,i]))
+    print(lr.X[i,:], np.dot(lr.theta,lr.X[i,:]),lr.predict(lr.X[i,:]), Y[i])
+    h.append(lr.predict(lr.X[i,:]))
 
 # create 3D Plot
 x1, x2 = np.linspace(0, 2,20), np.linspace(1,3,20)
