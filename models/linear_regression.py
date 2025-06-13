@@ -32,7 +32,7 @@ class Linear_Regression(Model):
         Returns:
             Predicted value (float).
         """
-        return np.dot(self.theta.T, X_i)
+        return np.dot(self.theta,X_i)
 
     def fit(self, X, Y):
         """Learn θ to minimize mean squared error on (X, Y).
@@ -44,10 +44,12 @@ class Linear_Regression(Model):
             X: Training data matrix, shape (n_samples, n_features).
             Y: Target vector, shape (n_samples,).
         """
-        self.X = np.ones((X.shape[0]+1,X.shape[1]))
-        self.X[1:1+np.shape(X)[0],:np.shape(X)[1]] = X
+        n_samples, n_features = X.shape
+        inputs = np.ones((n_samples, n_features+1))
+        inputs[:,1:] = X
+        self.X = inputs
         self.Y = Y
-        self.theta = np.zeros(self.X.shape[0]) # initial parameters are set to 0
+        self.theta = np.zeros(n_features + 1) # initial parameters are set to 0
         for i in range(self.epochs):
             self._lms_gradient_descent()
 
@@ -56,11 +58,8 @@ class Linear_Regression(Model):
 
         Updates self.theta in place over all samples.
         """
-        for j in range(self.theta.shape[0]):
-            sum_delta = 0
-            for i in range(self.X.shape[1]):
-                sum_delta += (self.Y[i] - self._hypothesis(self.X[:,i])) * self.X[j,i]
-            self.theta[j] += self.alpha * sum_delta
+        n_samples, n_features = self.X.shape
+        self.theta -= (self.alpha / n_samples) * self.X.T.dot(self.X.dot(self.theta) - self.Y)
 
     def predict(self, X):
         """Predict target values for new data.
